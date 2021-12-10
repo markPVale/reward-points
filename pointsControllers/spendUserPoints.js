@@ -11,13 +11,12 @@ exports.spendUserPoints = ((req, res) => {
     console.log('Error User Not Found')
     res.sendStatus(404)
   } else {
-    console.log('spendUserPointsRez', req.body)
     for (let user of users) {
-      if (user.userId === req.body.userId && user.totalPoints >= req.body.pointsSpent) {
-        // spendUserPointsServices(req.body);
+      if (user.userId === req.body.userId &&
+        user.totalPoints >= req.body.pointsSpent && req.body.pointsSpent > 0) {
         res.status(200).send((spendUserPointsServices(req.body)))
       } else {
-        console.log('Points Exceed Balance');
+        console.log('Invalid Number of Points');
         res.sendStatus(400);
       }
     }
