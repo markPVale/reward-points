@@ -17,12 +17,12 @@ exports.spendUserPointsServices = (payload) => {
             let currentTransactionPoints = user.transactions[i].points
 
             if (currentTransactionPoints < pointsSpent) {
-              pointsSpent -= user.transactions[i].points
-              user.totalPoints -= user.transactions[i].points
               let currentTransactionPayer = user.transactions[i].payer.toUpperCase()
-              currentSpendingTransactions.push({"payer": currentTransactionPayer, "points": -(user.transactions[i].points)})
               let currentPayerBalance = user.payerBalances.get(currentTransactionPayer)
               let adjustedPayerBalance = currentPayerBalance - user.transactions[i].points
+              pointsSpent -= user.transactions[i].points
+              user.totalPoints -= user.transactions[i].points
+              currentSpendingTransactions.push({"payer": currentTransactionPayer, "points": -(user.transactions[i].points)})
               user.payerBalances.set(currentTransactionPayer, adjustedPayerBalance)
               if(user.transactions[i].pointsRedeemed === undefined) {
                 user.transactions[i].pointsRedeemed = 0
@@ -33,8 +33,9 @@ exports.spendUserPointsServices = (payload) => {
               user.redeemedPointTransactions.unshift(user.transactions[i])
               user.transactions.shift();
             } else {
-
-              let currentTransactionPayer = user.transactions[i].payer
+              let currentTransactionPayer = user.transactions[i].payer;
+              let currentPayerBalance = user.payerBalances.get(currentTransactionPayer);
+              let adjustedPayerBalance = currentPayerBalance - pointsSpent;
               currentSpendingTransactions.push({"payer": currentTransactionPayer, "points": -(pointsSpent)})
               currentTransactionPoints -= pointsSpent
               if(user.transactions[i].partialPointsRedeemed === undefined) {
@@ -44,8 +45,6 @@ exports.spendUserPointsServices = (payload) => {
               user.transactions[i].points -= pointsSpent
               user.transactions[i].partialPointsRedeemedTimestamp = new Date()
               user.totalPoints -= pointsSpent
-              let currentPayerBalance = user.payerBalances.get(currentTransactionPayer);
-              let adjustedPayerBalance = currentPayerBalance - pointsSpent
               user.payerBalances.set(currentTransactionPayer, adjustedPayerBalance)
               if (user.transactions[i].points === 0) {
                 user.redeemedPointTransactions.unshift(user.transactions[i]);
