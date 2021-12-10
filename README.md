@@ -8,7 +8,7 @@ A point tracking API that allows the user to enter, modify and track a user's re
 
 # Build Project
  UNIX
- - Clone repo - `git clone https://github.com/`
+ - Clone repo - `git clone https://github.com/markPVale/reward-points`
  - Navigate to the root directory - `cd reward-points`
  - Insall dependencies - `npm install`
  - Start server - `npm run server`
