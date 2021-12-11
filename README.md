@@ -10,8 +10,8 @@ A point tracking API that allows the user to enter, modify and track a user's re
  UNIX
  - Clone repo - `git clone https://github.com/markPVale/reward-points`
  - Navigate to the root directory - `cd reward-points`
- - Insall dependencies - `npm install`
- - Start server - `npm run server`
+ - Install dependencies - `npm install`
+ - Start server - `node server/index.js`
  - Navigate to http://localhost:3000
 
 # Endpoints
@@ -27,7 +27,7 @@ points    | integer  | The number of the points in the transaction.
 RESPONSE
 > Response: Status 201 CREATED
 
-EXAMPLE USAGE
+EXAMPLE USAGE w/Curl
 ```
 curl --location --request POST 'http://localhost:3000/user/:id' \
 --header 'Content-Type: application/json' \
@@ -36,6 +36,18 @@ curl --location --request POST 'http://localhost:3000/user/:id' \
   "payer": "GM",
   "points": 150
 }'
+```
+
+EXAMPLE USAGE w/Postman
+```
+POST http://localhost:3000/user/:id
+Body
+raw
+{
+  "userId": 42,
+  "payer": "GM",
+  "points": 200
+}
 ```
 
 ### PUT /spendPoints
@@ -68,6 +80,16 @@ curl --location --request PUT 'http://localhost:3000/spendPoints' \
 }'
 
 ```
+EXAMPLE USAGE w/Postman
+```
+PUT http://localhost:3000/spendPoints
+Body
+raw
+{
+  "userId": 42,
+  "pointsSpent": 200
+}
+```
 
 ### GET /getPayerBalances
 Retrieve all payer point balances.
@@ -80,7 +102,7 @@ RESPONSE
 }
 ```
 
-EXAMPLE USAGE
+EXAMPLE USAGE w/Curl
 ```
 curl --location --request GET 'http://localhost:3000/userPoints' \
 --header 'Content-Type: application/json' \
@@ -88,6 +110,11 @@ curl --location --request GET 'http://localhost:3000/userPoints' \
   "userId": 42
 }'
 
+```
+
+EXAMPLE USAGE w/Postman
+```
+GET http://localhost:3000/userPoints
 ```
 
 
