@@ -29,8 +29,8 @@ A point tracking API that allows the user to enter, modify and track a user's re
 ● { "payer": "DANNON", "points": 300, "timestamp": "<oldest timestamp>" }
 ```
  - Step 3: Make the `./curlrequests-test.sh` file executable. Enter into the command line - `chmod +x ./curlrequests-test.sh`
- - Run the `./curlrequests-test.sh` file - `npm run test`
- - Make a call to the spendPoints route that will spend 5000 user points for userId 5 
+ - Step 4: Run the `./curlrequests-test.sh` file - `npm run test`
+ - Step 5: Make a call to the spendPoints route that will spend 5000 user points for userId 5 
  by entering the below curl command into the command line: 
 ```
    curl --location --request PUT 'http://localhost:3000/spendPoints' --header 'Content-Type: application/json' --data-raw '{
@@ -38,9 +38,8 @@ A point tracking API that allows the user to enter, modify and track a user's re
   "pointsSpent": 5000
 }'
 ```
- - Check the point balance of the above user by entering the curl command below into the 
+ - Step 6: Check the point balance of the above user by entering the curl command below into the 
  command line:
- 
 ```
 curl --location --request GET 'http://localhost:3000/userPoints' --header 'Content-Type: application/json' --data-raw '{
   "userId": 5 
