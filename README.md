@@ -19,8 +19,9 @@ A point tracking API that allows the user to enter, modify and track a user's re
  - Step 1: Build the project by following the steps above.
  - Step 2: Navigate to the root directory of the app in the terminal
  ```
- - curlrequests-test.sh - `is a file in the root directory of the app containing curl commands
- to load the following transactions for a user with the userId of 5:`
+ Note*
+ - curlrequests-test.sh - is a file in the root directory of the app containing curl commands
+ to load the following transactions for a user with the userId of 5:
  ```
 ● { "payer": "DANNON", "points": 1000, "timestamp": "<most recent timestamp>" }
 ● { "payer": "UNILEVER", "points": 200, "timestamp": "<second oldest timestamp>" }
