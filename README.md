@@ -14,6 +14,38 @@ A point tracking API that allows the user to enter, modify and track a user's re
  - Start server - `node server/index.js`
  - Navigate to http://localhost:3000
 
+# Load And Test Sample Transactions
+ UNIX
+ - Build the projects by following the steps above.
+ - Navigate to the root directory in the terminal - `cd reward-points`
+ - curlrequests-test.sh - `is a file in the root directory containing curl commands
+ to load the following transactions for a user with the userId of 5:`
+ -   Suppose you call your add transaction route with the following sequence of calls:
+● { "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" }
+● { "payer": "UNILEVER", "points": 200, "timestamp": "2020-10-31T11:00:00Z" }
+● { "payer": "DANNON", "points": -200, "timestamp": "2020-10-31T15:00:00Z" }
+● { "payer": "MILLER COORS", "points": 10000, "timestamp": "2020-11-01T14:00:00Z" }
+● { "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }
+ - Make the `./curlrequests-test.shfile` executable from the command line:
+ - `chmod +x ./curlrequests-test.sh`
+ - Enter `npm run test` into the command line
+ - Make a call to the spendPoints route that will spend 5000 user points for userId 5 
+ by entering the below curl command into the command line: 
+```
+   curl --location --request PUT 'http://localhost:3000/spendPoints' --header 'Content-Type: application/json' --data-raw '{
+  "userId": 5,
+  "pointsSpent": 5000
+}'
+```
+ - Check the point balance of the above user by entering the curl command below into the 
+ command line:
+ 
+```
+curl --location --request GET 'http://localhost:3000/userPoints' --header 'Content-Type: application/json' --data-raw '{
+  "userId": 5 
+}'
+```
+
 # Endpoints
 ### POST /user/:id
 Add a transaction for a specific user
