@@ -9,7 +9,7 @@ A point tracking API that allows the user to enter, modify and track a user's re
 # Build Project
  UNIX
  - Clone repo - `git clone https://github.com/markPVale/reward-points`
- - Navigate to the root directory - `cd reward-points`
+ - Navigate to the root directory of the app
  - Install dependencies - `npm install`
  - Start server - `node server/index.js`
  - Navigate to http://localhost:3000
@@ -17,8 +17,8 @@ A point tracking API that allows the user to enter, modify and track a user's re
 # Load And Test Sample Transactions
  UNIX
  - Build the project by following the steps above.
- - Navigate to the root directory in the terminal - `cd reward-points`
- - curlrequests-test.sh - `is a file in the root directory containing curl commands
+ - Navigate to the root directory of the app in the terminal
+ - curlrequests-test.sh - `is a file in the root directory of the app containing curl commands
  to load the following transactions for a user with the userId of 5:`
  -   Suppose you call your add transaction route with the following sequence of calls:
 ● { "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" }
