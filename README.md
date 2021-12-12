@@ -27,8 +27,10 @@ A point tracking API that allows the user to enter, modify and track a user's re
 ● { "payer": "MILLER COORS", "points": 10000, "timestamp": "<second most recent timestamp>" }
 ● { "payer": "DANNON", "points": 300, "timestamp": "<oldest timestamp>" }
 ```
- - Make the `./curlrequests-test.shfile` executable from the command line:
- `chmod +x ./curlrequests-test.sh`
+ - Make the `./curlrequests-test.shfile` executable. Enter into the command line:
+ ```
+ chmod +x ./curlrequests-test.sh
+ ```
  - Enter `npm run test` into the command line
  - Make a call to the spendPoints route that will spend 5000 user points for userId 5 
  by entering the below curl command into the command line: 
