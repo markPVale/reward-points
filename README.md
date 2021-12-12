@@ -22,7 +22,6 @@ A point tracking API that allows the user to enter, modify and track a user's re
  Note*
  - curlrequests-test.sh - is a file in the root directory of the app containing curl commands
  to load the following transactions for a user with the userId of 5:
- ```
 ● { "payer": "DANNON", "points": 1000, "timestamp": "<most recent timestamp>" }
 ● { "payer": "UNILEVER", "points": 200, "timestamp": "<second oldest timestamp>" }
 ● { "payer": "DANNON", "points": -200, "timestamp": "<third oldest timestamp>" }
