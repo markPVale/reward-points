@@ -9,10 +9,42 @@ A point tracking API that allows the user to enter, modify and track a user's re
 # Build Project
  UNIX
  - Clone repo - `git clone https://github.com/markPVale/reward-points`
- - Navigate to the root directory - `cd reward-points`
+ - Navigate to the root directory of the app
  - Install dependencies - `npm install`
  - Start server - `node server/index.js`
- - Navigate to http://localhost:3000
+ - Confirm the server is listening at http://localhost:3000
+
+# Load And Test Sample Transactions
+ UNIX
+ - Step 1: Build the project by following the steps above.
+ - Step 2: Navigate to the root directory of the app in the terminal
+ ```
+ Note*
+ - curlrequests-test.sh - is a file in the root directory of the app containing curl commands
+ to load the following transactions for a user with the userId of 5:
+● { "payer": "DANNON", "points": 1000, "timestamp": "<most recent timestamp>" }
+● { "payer": "UNILEVER", "points": 200, "timestamp": "<second oldest timestamp>" }
+● { "payer": "DANNON", "points": -200, "timestamp": "<third oldest timestamp>" }
+● { "payer": "MILLER COORS", "points": 10000, "timestamp": "<second most recent timestamp>" }
+● { "payer": "DANNON", "points": 300, "timestamp": "<oldest timestamp>" }
+```
+ - Step 3: Make the `./curlrequests-test.sh` file executable. Enter into the command line - `chmod +x ./curlrequests-test.sh`
+ - Step 4: Run the `./curlrequests-test.sh` file - `npm run test`
+ - Step 5: Make a call to the spendPoints route that will spend 5000 user points for userId 5 
+ by entering the below curl command into the command line: 
+```
+   curl --location --request PUT 'http://localhost:3000/spendPoints' --header 'Content-Type: application/json' --data-raw '{
+  "userId": 5,
+  "pointsSpent": 5000
+}'
+```
+ - Step 6: Check the point balance of the above user by entering the curl command below into the 
+ command line:
+```
+curl --location --request GET 'http://localhost:3000/userPoints' --header 'Content-Type: application/json' --data-raw '{
+  "userId": 5 
+}'
+```
 
 # Endpoints
 ### POST /user/:id
