@@ -20,12 +20,13 @@ A point tracking API that allows the user to enter, modify and track a user's re
  - Navigate to the root directory of the app in the terminal
  - curlrequests-test.sh - `is a file in the root directory of the app containing curl commands
  to load the following transactions for a user with the userId of 5:`
- -   Suppose you call your add transaction route with the following sequence of calls:
-● { "payer": "DANNON", "points": 1000, "timestamp": "2020-11-02T14:00:00Z" }
-● { "payer": "UNILEVER", "points": 200, "timestamp": "2020-10-31T11:00:00Z" }
-● { "payer": "DANNON", "points": -200, "timestamp": "2020-10-31T15:00:00Z" }
-● { "payer": "MILLER COORS", "points": 10000, "timestamp": "2020-11-01T14:00:00Z" }
-● { "payer": "DANNON", "points": 300, "timestamp": "2020-10-31T10:00:00Z" }
+ ```
+● { "payer": "DANNON", "points": 1000, "timestamp": "<most recent timestamp>" }
+● { "payer": "UNILEVER", "points": 200, "timestamp": "<second oldest timestamp>" }
+● { "payer": "DANNON", "points": -200, "timestamp": "<third oldest timestamp>" }
+● { "payer": "MILLER COORS", "points": 10000, "timestamp": "<second most recent timestamp>" }
+● { "payer": "DANNON", "points": 300, "timestamp": "<oldest timestamp>" }
+```
  - Make the `./curlrequests-test.shfile` executable from the command line:
  `chmod +x ./curlrequests-test.sh`
  - Enter `npm run test` into the command line
