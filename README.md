@@ -16,8 +16,9 @@ A point tracking API that allows the user to enter, modify and track a user's re
 
 # Load And Test Sample Transactions
  UNIX
- - Build the project by following the steps above.
- - Navigate to the root directory of the app in the terminal
+ - Step 1: Build the project by following the steps above.
+ - Step 2: Navigate to the root directory of the app in the terminal
+ ```
  - curlrequests-test.sh - `is a file in the root directory of the app containing curl commands
  to load the following transactions for a user with the userId of 5:`
  ```
@@ -26,6 +27,7 @@ A point tracking API that allows the user to enter, modify and track a user's re
 ● { "payer": "DANNON", "points": -200, "timestamp": "<third oldest timestamp>" }
 ● { "payer": "MILLER COORS", "points": 10000, "timestamp": "<second most recent timestamp>" }
 ● { "payer": "DANNON", "points": 300, "timestamp": "<oldest timestamp>" }
+```
 ```
  - Make the `./curlrequests-test.shfile` executable. Enter into the command line:
  ```
