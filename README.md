@@ -16,7 +16,7 @@ A point tracking API that allows the user to enter, modify and track a user's re
 
 # Load And Test Sample Transactions
  UNIX
- - Build the projects by following the steps above.
+ - Build the project by following the steps above.
  - Navigate to the root directory in the terminal - `cd reward-points`
  - curlrequests-test.sh - `is a file in the root directory containing curl commands
  to load the following transactions for a user with the userId of 5:`
