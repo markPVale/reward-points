@@ -53,7 +53,7 @@ exports.addTransactionService = (transactionData, timestamp) => {
                   }
                   user.negativePointTransactions.push(transactionData);
                   sortByTimestamp(user.negativePointTransactions);
-                  user.transactions.splice(transactions.indexOf(transaction, 1));
+                  user.transactions.splice(user.transactions.indexOf(transaction, 1));
                 }
               }
             }
