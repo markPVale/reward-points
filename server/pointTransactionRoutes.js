@@ -1,24 +1,23 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../pointsModels/database');
-const {validateUser} = require('../pointsControllers/validateUser');
-const {addTransaction} = require('../pointsControllers/addTransaction');
-const {spendUserPoints} = require('../pointsControllers/spendUserPoints');
-const {callPayerPointBalance} = require('../pointsControllers/callPayerPointBalance');
+const { validateUser } = require('../pointsControllers/validateUser');
+const { addTransaction } = require('../pointsControllers/addTransaction');
+const { spendUserPoints } = require('../pointsControllers/spendUserPoints');
+const { callPayerPointBalance } = require('../pointsControllers/callPayerPointBalance');
 
 router.route('/')
   .get((req, res) => {
-    res.send('welcome to fetch rewards')
+    res.send('welcome to fetch rewards');
   });
 
 router.route('/user/:id')
-  .post((addTransaction))
+  .post((addTransaction));
 
 router.route('/spendPoints', spendUserPoints)
-  .put((spendUserPoints))
+  .put((spendUserPoints));
 
 router.route('/userPoints')
-  .get((callPayerPointBalance))
+  .get((callPayerPointBalance));
 
-
-  module.exports = router
+module.exports = router;

@@ -5,4 +5,4 @@ exports.validateUser = (userId) => {
   } else {
     console.log(`user id ${userId} is invalid`);
   }
-}
+};

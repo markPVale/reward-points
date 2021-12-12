@@ -1,41 +1,78 @@
-const { users, userCheck, User, userId } = require('../pointsModels/database')
-const {sortByTimestamp} = require('./sortByTimestamp');
-const {addUserToDB} = require('../pointsModels/addUserToDB');
+const { users, userCheck, User, userId } = require('../pointsModels/database');
+const { sortByTimestamp } = require('./sortByTimestamp');
+const { addUserToDB } = require('../pointsModels/addUserToDB');
 const util = require('util');
 
 exports.addTransactionService = (transactionData, timestamp) => {
   transactionData.timestamp = timestamp;
-  let { userId, payer, points } = transactionData;
+  const { userId, payer, points } = transactionData;
 
-  if (users.length === 0) {
-    addUserToDB(new User(userId, points, payer));
-    userCheck.add(userId);
-    users[0].transactions.push(transactionData);
-    users[0].payerBalances.set(payer, points);
+  if (users.length === 0) { //if new user, can't add negative points
+    if (points < 0) {
+      console.log('Error: User Cannot Be Initiated With A Negative Point Balance');
+    } else {
+      addUserToDB(new User(userId, points, payer));
+      userCheck.add(userId);
+      users[0].transactions.push(transactionData);
+      users[0].payerBalances.set(payer, points);
+    }
   } else if (!userCheck.has(userId)) {
-    addUserToDB(new User(userId, points, payer))
-    userCheck.add(userId);
-    users[0].transactions.push(transactionData);
-    users[0].payerBalances.set(payer, points);
+    if (points < 0) {
+      console.log('Error: User Cannot Be Initiated With A Negative Point Balance');
+    } else {
+      addUserToDB(new User(userId, points, payer));
+      userCheck.add(userId);
+      users[0].transactions.push(transactionData);
+      users[0].payerBalances.set(payer, points);
+    }
   } else {
-    for (let user of users) {
+    for (const user of users) {
       if (user.userId === transactionData.userId) {
-        if(user.totalPoints + points >= 0) {
+        if (user.totalPoints + points >= 0) {
           user.totalPoints += points;
+          if (points >= 0) {
           user.transactions.push(transactionData);
           sortByTimestamp(user.transactions);
+          } else {
+            user.negativePointTransactions.push(transactionData);
+          sortByTimestamp(user.negativePointTransactions);
+            for (let transaction of user.transactions) {
+              if (transaction.payer === payer) {
+                if (transaction.points += points > 0) {
+                  transaction.points += points;
+                  if (transaction.pointsReturned === undefined) {
+                    transaction.pointsReturned = points;
+                  } else {
+                    transaction.pointsReturned += points;
+                  }
+                } else {
+                  if (transaction.pointsReturned === undefined) {
+                    transaction.pointsReturned = points;
+                  } else {
+                    transaction.pointsReturned += points;
+                  }
+                  user.negativePointTransactions.push(transactionData);
+                  sortByTimestamp(user.negativePointTransactions);
+                  user.transactions.splice(transactions.indexOf(transaction, 1));
+                }
+              }
+            }
+          }
           if (user.payerBalances.has(transactionData.payer)) {
-            let currentBalance = user.payerBalances.get(payer);
+            const currentBalance = user.payerBalances.get(payer);
             if (currentBalance + points >= 0) {
-              let updateBalance = user.payerBalances.get(payer) + points;
+              const updateBalance = user.payerBalances.get(payer) + points;
               user.payerBalances.set(payer, updateBalance);
-            };
+            } else {
+              user.payerBalances.set(payer, 0);
+            }
+            console.log(util.inspect(user, false, null, true));
           } else if (points > 0) {
             user.payerBalances.set(payer, points);
           } else {
             console.log('Error: Attempt To Update Negative Points From A Zero Balance');
+            break;
           }
-          break;
         } else {
           console.log('Invalid number of points');
           break;
@@ -43,4 +80,8 @@ exports.addTransactionService = (transactionData, timestamp) => {
       }
     }
   }
-}
+};
+
+
+
+

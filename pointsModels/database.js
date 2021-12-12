@@ -1,15 +1,16 @@
-const users = []
+const users = [];
 const userCheck = new Set();
-let userId = 0;
+const userId = 0;
 
 class User {
-  constructor(userId, totalPoints, payerBalances) {
+  constructor (userId, totalPoints, payerBalances) {
     this.userId = userId;
     this.totalPoints = totalPoints;
     this.payerBalances = new Map();
     this.transactions = [];
     this.redeemedPointTransactions = [];
+    this.negativePointTransactions = [];
   }
-}
+};
 
-module.exports = { users, User, userCheck }
+module.exports = { users, User, userCheck };
