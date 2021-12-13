@@ -11,7 +11,7 @@ A point tracking API that allows the user to enter, modify and track a user's re
  - Clone repo - `git clone https://github.com/markPVale/reward-points`
  - Navigate to the root directory of the app
  - Install dependencies - `npm install`
- - Start server - `node server/index.js`
+ - Start server - `npm start`
  - Confirm the server is listening at http://localhost:3000
 
 # Load And Test Sample Transactions
