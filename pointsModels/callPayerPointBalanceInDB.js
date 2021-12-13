@@ -1,5 +1,4 @@
 const { users, userCheck } = require('./database');
-const util = require('util');
 
 exports.callPayerPointBalanceInDB = (userData) => {
 

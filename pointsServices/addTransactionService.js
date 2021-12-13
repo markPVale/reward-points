@@ -1,7 +1,6 @@
 const { users, userCheck, User, userId } = require('../pointsModels/database');
 const { sortByTimestamp } = require('./sortByTimestamp');
 const { addUserToDB } = require('../pointsModels/addUserToDB');
-const util = require('util');
 
 exports.addTransactionService = (transactionData, timestamp) => {
   transactionData.timestamp = timestamp;
@@ -66,7 +65,6 @@ exports.addTransactionService = (transactionData, timestamp) => {
             } else {
               user.payerBalances.set(payer, 0);
             }
-            console.log(util.inspect(user, false, null, true));
           } else if (points > 0) {
             user.payerBalances.set(payer, points);
           } else {
