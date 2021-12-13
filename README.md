@@ -78,7 +78,7 @@ raw
 {
   "userId": 42,
   "payer": "GM",
-  "points": 200
+  "points": 150
 }
 ```
 
@@ -119,7 +119,7 @@ Body
 raw
 {
   "userId": 42,
-  "pointsSpent": 200
+  "pointsSpent": 100
 }
 ```
 
@@ -147,6 +147,11 @@ curl --location --request GET 'http://localhost:3000/userPoints' \
 EXAMPLE USAGE w/Postman
 ```
 GET http://localhost:3000/userPoints
+Body
+raw
+{
+  "userId": 42
+}
 ```
 
 
