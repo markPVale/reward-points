@@ -1,10 +1,8 @@
 const { users } = require('../pointsModels/database');
-const util = require('util');
 
 exports.spendUserPointsServices = (payload) => {
   let { userId, pointsSpent } = payload;
   const currentSpendingTransactions = []
-
   while (pointsSpent > 0) {
     for (let i = 0; i < users.length; i++) {
       if (users[i].userId === userId) {
@@ -15,7 +13,6 @@ exports.spendUserPointsServices = (payload) => {
         } else {
           for (let i = 0; i < user.transactions.length; i++) {
             let currentTransactionPoints = user.transactions[i].points;
-            // console.log('currentTransaction', user.transactions[i], 'transactionList', user.transactions)
             if (currentTransactionPoints < pointsSpent) {
               const currentTransactionPayer = user.transactions[i].payer.toUpperCase();
               const currentPayerBalance = user.payerBalances.get(currentTransactionPayer);
@@ -31,7 +28,6 @@ exports.spendUserPointsServices = (payload) => {
               user.transactions[i].pointsRedeemedTimestamp = new Date();
               user.transactions[i].points = 0;
               user.redeemedPointTransactions.unshift(user.transactions[i]);
-              // user.transactions.shift()
             } else {
               const currentTransactionPayer = user.transactions[i].payer;
               const currentPayerBalance = user.payerBalances.get(currentTransactionPayer);
@@ -48,7 +44,6 @@ exports.spendUserPointsServices = (payload) => {
               user.payerBalances.set(currentTransactionPayer, adjustedPayerBalance);
               if (user.transactions[i].points === 0) {
                 user.redeemedPointTransactions.unshift(user.transactions[i])
-                // user.transactions.shift()
               }
               pointsSpent = 0;
               console.log('Points Redeemed: ', currentSpendingTransactions);
