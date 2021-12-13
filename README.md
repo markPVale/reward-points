@@ -74,7 +74,7 @@ EXAMPLE USAGE w/Postman
 ```
 POST http://localhost:3000/user/:id
 Body
-raw
+raw JSON
 {
   "userId": 42,
   "payer": "GM",
@@ -116,7 +116,7 @@ EXAMPLE USAGE w/Postman
 ```
 PUT http://localhost:3000/spendPoints
 Body
-raw
+raw JSON
 {
   "userId": 42,
   "pointsSpent": 100
@@ -148,7 +148,7 @@ EXAMPLE USAGE w/Postman
 ```
 GET http://localhost:3000/userPoints
 Body
-raw
+raw JSON
 {
   "userId": 42
 }
